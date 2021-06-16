@@ -33,6 +33,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
     ps.LoadPS("Assets/shader/sample.fx", "PSMain");
 
     // 3. パイプラインステートを作成
+	// パイプラインステートとは: 各ステージの設定のこと
+	//ラスタライズやカリング、塗りつぶしの設定はここで行う
     PipelineState pipelineState;
     InitPipelineState(pipelineState, rootSignature, vs, ps);
 
@@ -69,7 +71,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
         g_engine->BeginFrame();
 
         //////////////////////////////////////
-        // ここから絵を描くコードを記述する
+        // ここから絵を描くコードを記述する（三角形描画のドローコール）
         //////////////////////////////////////
 
         // 1. ルートシグネチャを設定
@@ -88,6 +90,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
         renderContext.SetIndexBuffer(triangleIB);
 
         // 6. ドローコール
+    	//GPUの描画命令.
         renderContext.DrawIndexed(3);
 
         /////////////////////////////////////////
