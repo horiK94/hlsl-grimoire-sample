@@ -24,17 +24,20 @@ VSOutput VSMain(VSInput In)
 }
 
 // ピクセルシェーダー
+//戻り値は色
 float4 PSMain(VSOutput vsOut) : SV_Target0
 {
     // 赤色を出力している
-    return float4(1.0f, 0.0f , 0.0f, 1.0f);
+    //return float4(1.0f, 0.0f , 0.0f, 1.0f);
 
     // step-1 三角形を青色にする
-
+    //return float4(0.0, 0.0, 1.0, 1.0);
     // step-2 三角形を緑色にする
-
+    //return float4(0.0, 1.0, 0.0, 1.0);
     // step-3 三角形を黄色にする
-
+    //return float4(1.0, 1.0, 0, 1.0);
     // step-4 頂点シェーダーから受け取ったカラーを出力する
-
+    //頂点データが補完されて渡される. 補完はラスタライズで行っている
+    //ラスタライズの仕事は塗りつぶすピクセルの決定と補完
+    return float4(vsOut.color, 1.0f);
 }
